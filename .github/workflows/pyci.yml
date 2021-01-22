@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 jobs:
-  linter: 
+  test: 
     runs-on: ubuntu-latest
     
     steps:      
@@ -23,3 +23,9 @@ jobs:
         run: make install  
       - name: lint
         run: make lint
+      - name: test code coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: 4e848bd56ac22115d8fc5d3b2751d2df65dbe12f57c65d30fe60666eb2fc00d3
+        with:
+            coverageCommand: make test-coverage
