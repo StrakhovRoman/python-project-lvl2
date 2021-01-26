@@ -4,7 +4,25 @@ from gendiff.status import status_keys
 INDENT = '  '
 
 
-def make_string(indent, status, name, value):  # noqa: WPS110
+def stylish(diff, depth=1):
+    output = []
+    indent = INDENT * depth
+    for node in diff:
+        if node.parent:
+            get_output(output, indent, node, depth, stylish)
+        elif isinstance(node.value, dict):
+            get_output(output, indent, node, depth, format_dictionary_value)
+        else:
+            output.append(make_string(
+                indent, node.name, convert(node.value), node.status,
+            ),
+            )
+    if depth == 1:
+        output = ['{'] + output + ['}']
+    return '\n'.join(output)
+
+
+def make_string(indent, name, value, status='unchanged'):  # noqa: WPS110
     return ('{0}{1} {2}: {3}'.format(
         indent,
         status_keys[status],
@@ -14,30 +32,32 @@ def make_string(indent, status, name, value):  # noqa: WPS110
     )
 
 
-def stylish(diff, depth=1):
-    output = []
-    indent = INDENT * depth
+def get_output(out, indent, node, depth, func):
+    out.append(make_string(indent, node.name, '{', node.status))
+    out.append(func(node.value, depth + 2))
+    out.append('{0}{1}'.format(indent + INDENT, '}'))
+    return out
 
-    for node in diff:
-        if node.parent:
-            output.append(make_string(indent, node.status, node.name, '{'))
-            output.append(stylish(node.value, depth + 2))
-            output.append('{0}{1}'.format(indent + INDENT, '}'))
+
+def format_dictionary_value(node_value, depth=1):
+    out = []
+    indent = INDENT * depth
+    for key, value in node_value.items():  # noqa: WPS110
+        if isinstance(value, dict):
+            out.append(make_string(indent, key, '{'))
+            out.append(format_dictionary_value(value, depth + 2))
+            out.append('{0}{1}'.format(indent + INDENT, '}'))
         else:
-            output.append(make_string(
-                indent, node.status, node.name, convert(node.value),
+            out.append(make_string(
+                indent, key, value,
             ),
             )
-    if depth == 1:
-        output = ['{'] + output + ['}']
-    return '\n'.join(output)
+    return '\n'.join(out)
 
 
 def convert(node_value):
     if node_value is None:
         return 'null'
-    elif node_value is True:
-        return 'true'
-    elif node_value is False:
-        return 'false'
+    elif isinstance(node_value, bool):
+        return str(node_value).lower()
     return node_value
