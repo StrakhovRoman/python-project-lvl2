@@ -29,11 +29,7 @@ def get_difference(first_file, second_file):  # noqa: WPS210
 
 
 def add_node(tree, key, input_file, status):
-    if isinstance(input_file[key], dict):
-        node_value = get_difference(input_file[key], input_file[key])
-        tree.append(Node(key, node_value, status, parent=True))
-    else:
-        tree.append(Node(key, input_file[key], status))
+    tree.append(Node(key, input_file[key], status))
 
 
 def add_intersection_node(tree, key, file1, file2):
