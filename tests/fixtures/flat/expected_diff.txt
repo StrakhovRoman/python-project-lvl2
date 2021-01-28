@@ -1,0 +1,1 @@
+[Node(name='follow', value=False, status='deleted'), Node(name='host', value='hexlet.io', status='unchanged'), Node(name='proxy', value='123.234.53.22', status='deleted'), Node(name='timeout', value=50, status='changed_del'), Node(name='timeout', value=20, status='changed_add'), Node(name='verbose', value=True, status='added')]

@@ -17,16 +17,16 @@ def test_stylish_flat():
     )
 
 
-def test_stylish_recursive():
-    with open('tests/fixtures/recursive/expected.txt', 'r') as fixture:
+def test_stylish():
+    with open('tests/fixtures/complex/expected.txt', 'r') as fixture:
         expected = fixture.read()
 
     assert expected == generate_diff(
-        'tests/fixtures/recursive/recursive_previous.json',
-        'tests/fixtures/recursive/recursive_current.json',
+        'tests/fixtures/complex/previous.json',
+        'tests/fixtures/complex/current.json',
     )
 
     assert expected == generate_diff(
-        'tests/fixtures/recursive/recursive_previous.yml',
-        'tests/fixtures/recursive/recursive_current.yml',
+        'tests/fixtures/complex/previous.yml',
+        'tests/fixtures/complex/current.yml',
     )
