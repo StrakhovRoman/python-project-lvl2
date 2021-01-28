@@ -19,7 +19,7 @@ lint:
 
 
 test:
-	poetry run pytest tests -v
+	poetry run pytest tests -vv
 
 
 coverage:
