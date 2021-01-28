@@ -1,12 +1,14 @@
 """Node status constants."""
 
-ADDED, CHANGED_ADD = ('added',) * 2
-DELETED, CHANGED_DEL = ('deleted',) * 2
+ADDED, CHANGED_ADD = 'added', 'changed_add'
+DELETED, CHANGED_DEL = 'deleted', 'changed_del'
 UNCHANGED = 'unchanged'
+PARENT = 'parent'
 
 
-status_keys = {
-    'deleted': '-',
-    'added': '+',
-    'unchanged': ' ',
-}
+def get_status_operator(status=UNCHANGED):
+    if status in {DELETED, CHANGED_DEL}:
+        return '-'
+    elif status in {ADDED, CHANGED_ADD}:
+        return '+'
+    return ' '

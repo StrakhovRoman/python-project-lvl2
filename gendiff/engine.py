@@ -1,11 +1,11 @@
 """Run programm modules."""
 from gendiff.data_processing import read_file
-from gendiff.formats import stylish
+from gendiff.format import plain, stylish
 from gendiff.gen_diff import get_difference
 
 formats = {
     'stylish': stylish.stylish,
-    # 'plain': plain
+    'plain': plain.plain,
 }
 
 
@@ -23,4 +23,5 @@ def generate_diff(first_file, second_file, _format='stylish'):
 
     else:
         diff = get_difference(previous_file, current_file)
+        print(diff)
         return formats[_format](diff)
