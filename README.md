@@ -9,7 +9,7 @@
 ***
 Use this command to install the package via Git:
 ```
-python -m pip install git+https://github.com/StrakhovRoman/python-project-lvl2.git@918bf18f6b3f0d6fcbaa0e3bc82c7bd16e3e72af
+python -m pip install git+https://github.com/StrakhovRoman/python-project-lvl2.git@4b37b7166ab4f78a340fbeea15fdb7ee4f0a6eb1
 ```
 ***
 For help:
