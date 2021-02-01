@@ -1,0 +1,132 @@
+[
+  [
+    "common",
+    [
+      [
+        "follow",
+        false,
+        "added"
+      ],
+      [
+        "setting1",
+        "Value 1",
+        "unchanged"
+      ],
+      [
+        "setting2",
+        200,
+        "deleted"
+      ],
+      [
+        "setting3",
+        true,
+        "changed_del"
+      ],
+      [
+        "setting3",
+        null,
+        "changed_add"
+      ],
+      [
+        "setting4",
+        "blah blah",
+        "added"
+      ],
+      [
+        "setting5",
+        {
+          "key5": "value5"
+        },
+        "added"
+      ],
+      [
+        "setting6",
+        [
+          [
+            "doge",
+            [
+              [
+                "wow",
+                "",
+                "changed_del"
+              ],
+              [
+                "wow",
+                "so much",
+                "changed_add"
+              ]
+            ],
+            "parent"
+          ],
+          [
+            "key",
+            "value",
+            "unchanged"
+          ],
+          [
+            "ops",
+            "vops",
+            "added"
+          ]
+        ],
+        "parent"
+      ]
+    ],
+    "parent"
+  ],
+  [
+    "group1",
+    [
+      [
+        "baz",
+        "bas",
+        "changed_del"
+      ],
+      [
+        "baz",
+        "bars",
+        "changed_add"
+      ],
+      [
+        "foo",
+        "bar",
+        "unchanged"
+      ],
+      [
+        "nest",
+        {
+          "key": "value"
+        },
+        "changed_del"
+      ],
+      [
+        "nest",
+        "str",
+        "changed_add"
+      ]
+    ],
+    "parent"
+  ],
+  [
+    "group2",
+    {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    },
+    "deleted"
+  ],
+  [
+    "group3",
+    {
+      "fee": 100500,
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      }
+    },
+    "added"
+  ]
+]
