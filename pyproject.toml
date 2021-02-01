@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "hexlet_code"
+name = "hexlet-code"
 version = "0.1.0"
 description = ""
 authors = ["Roman Strakhov <rvstrakhov@gmail.com>"]
