@@ -5,6 +5,7 @@ import os
 import yaml
 
 extension = {
+    '.yaml': yaml.safe_load,
     '.yml': yaml.safe_load,
     '.json': json.load,
 }
