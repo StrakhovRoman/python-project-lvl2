@@ -5,6 +5,7 @@
 import argparse
 
 from gendiff.engine import generate_diff
+from gendiff.format.formats import DEFAULT_FORMAT
 
 
 def main():
@@ -16,11 +17,14 @@ def main():
         '-f',
         '--format',
         type=str,
-        default='stylish',
+        default=DEFAULT_FORMAT,
         help='set format of output',
     )
     args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file, args.format))
+    try:
+        print(generate_diff(args.first_file, args.second_file, args.format))
+    except Exception as error:
+        print(error)
 
 
 if __name__ == '__main__':
