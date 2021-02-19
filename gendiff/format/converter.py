@@ -6,4 +6,4 @@ def convert(node_value):
         return 'null'
     elif isinstance(node_value, bool):
         return str(node_value).lower()
-    return node_value
+    return str(node_value)
