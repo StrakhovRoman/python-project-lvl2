@@ -8,6 +8,8 @@ formats = {
 }
 
 DEFAULT_FORMAT = 'stylish'
+PLAIN_FORMAT = 'plain'
+JSON_FORMAT = 'json'
 
 
 def get_format_function(file_format):
