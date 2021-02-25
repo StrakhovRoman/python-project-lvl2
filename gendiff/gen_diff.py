@@ -2,7 +2,10 @@
 
 from collections import namedtuple
 
-from gendiff import status
+ADDED, CHANGED_ADD = 'added', 'changed_add'
+DELETED, CHANGED_DEL = 'deleted', 'changed_del'
+PARENT = 'parent'
+UNCHANGED = 'unchanged'
 
 Node = namedtuple('Node', 'name value status')
 
@@ -17,10 +20,10 @@ def get_difference(first_file, second_file):  # noqa: WPS210
         add_intersection_node(diff, key, first_file, second_file)
 
     for added_key in addition:
-        add_node(diff, added_key, second_file, status.ADDED)
+        add_node(diff, added_key, second_file, ADDED)
 
     for deleted_key in deletion:
-        add_node(diff, deleted_key, first_file, status.DELETED)
+        add_node(diff, deleted_key, first_file, DELETED)
 
     diff.sort(key=lambda node: node.name)
     return diff
@@ -33,9 +36,9 @@ def add_node(tree, name, input_file, node_status):
 def add_intersection_node(tree, name, previous, current):
     if isinstance(previous[name], dict) and isinstance(current[name], dict):
         node_value = get_difference(previous[name], current[name])
-        tree.append(Node(name, node_value, status.PARENT))
+        tree.append(Node(name, node_value, PARENT))
     elif previous[name] == current[name]:
-        add_node(tree, name, previous, status.UNCHANGED)
+        add_node(tree, name, previous, UNCHANGED)
     else:
-        add_node(tree, name, previous, status.CHANGED_DEL)
-        add_node(tree, name, current, status.CHANGED_ADD)
+        add_node(tree, name, previous, CHANGED_DEL)
+        add_node(tree, name, current, CHANGED_ADD)

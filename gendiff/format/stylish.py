@@ -1,6 +1,9 @@
-"""Default output format."""
+"""Stylish output format."""
 from gendiff.format.converter import convert
-from gendiff.status import PARENT, UNCHANGED, get_status_operator
+
+from gendiff.gen_diff import (  # isort:skip
+    ADDED, CHANGED_ADD, CHANGED_DEL, DELETED, PARENT, UNCHANGED,
+)
 
 INDENT = '  '
 
@@ -35,6 +38,14 @@ def make_string(indent, name, value, status=UNCHANGED):  # noqa: WPS110
         value,
     )
     )
+
+
+def get_status_operator(status):
+    if status in {DELETED, CHANGED_DEL}:
+        return '-'
+    elif status in {ADDED, CHANGED_ADD}:
+        return '+'
+    return ' '
 
 
 def get_output_line(out, indent, node, depth, func):

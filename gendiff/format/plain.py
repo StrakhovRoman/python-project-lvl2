@@ -1,6 +1,6 @@
 """Plain output format."""
 from gendiff.format.converter import convert
-from gendiff.status import ADDED, CHANGED_ADD, CHANGED_DEL, DELETED, PARENT
+from gendiff.gen_diff import ADDED, CHANGED_ADD, CHANGED_DEL, DELETED, PARENT
 
 templates = {
     CHANGED_ADD: "Property '{0}{1}' was updated. From {2} to {3}",
