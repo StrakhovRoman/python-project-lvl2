@@ -5,7 +5,7 @@
 import argparse
 
 from gendiff.engine import generate_diff
-from gendiff.format.formats import DEFAULT_FORMAT
+from gendiff.format.formats import DEFAULT_FORMAT, formats
 
 
 def main():
@@ -17,8 +17,9 @@ def main():
         '-f',
         '--format',
         type=str,
-        default=DEFAULT_FORMAT,
         help='set format of output',
+        default=DEFAULT_FORMAT,
+        choices=formats.keys(),
     )
     args = parser.parse_args()
     try:
