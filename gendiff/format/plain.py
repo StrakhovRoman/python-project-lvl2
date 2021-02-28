@@ -1,9 +1,9 @@
 """Plain output format."""
 from gendiff.format.converter import convert
-from gendiff.gen_diff import ADDED, CHANGED_ADD, CHANGED_DEL, DELETED, PARENT
+from gendiff.gen_diff import ADDED, CHANGED, DELETED, PARENT, diff_sort
 
 templates = {
-    CHANGED_ADD: "Property '{0}{1}' was updated. From {2} to {3}",
+    CHANGED: "Property '{0}{1}' was updated. From {2} to {3}",
     ADDED: "Property '{0}{1}' was added with value: {2}",
     DELETED: "Property '{0}{1}' was removed",
 }
@@ -11,30 +11,36 @@ templates = {
 
 def plain(diff, path=''):
     output = []
-    for node in diff:
+    diff_sort(diff)
 
+    for node in diff:
         if node.status == PARENT:
             output.append(
                 plain(node.value, '{0}{1}.'.format(path, node.name)),
             )
 
-        if node.status in {ADDED, DELETED}:
-            output_line = path, node.name, get_value(node.value)
-            output.append(templates[node.status].format(*output_line))
+        elif node.status == CHANGED:
+            previous_value, current_value = node.value
+            output.append(templates[CHANGED].format(
+                path,
+                node.name,
+                format_value(previous_value),
+                format_value(current_value),
+            ),
+            )
 
-        if node.status == CHANGED_DEL:
-            previous = get_value(node.value)
-
-        if node.status == CHANGED_ADD:
-            output.append(templates[CHANGED_ADD].format(
-                path, node.name, previous, get_value(node.value),
+        elif node.status in {ADDED, DELETED}:
+            output.append(templates[node.status].format(
+                path,
+                node.name,
+                format_value(node.value),
             ),
             )
 
     return '\n'.join(output)
 
 
-def get_value(node_value):
+def format_value(node_value):
     if isinstance(node_value, dict):
         return '[complex value]'
     elif isinstance(node_value, str):
