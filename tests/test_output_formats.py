@@ -2,7 +2,7 @@
 import pytest
 
 from gendiff.engine import generate_diff
-from gendiff.format.formats import DEFAULT_FORMAT, PLAIN_FORMAT
+from gendiff.format.formats import DEFAULT_FORMAT, JSON_FORMAT, PLAIN_FORMAT
 
 PATH_TO_FIXTURES = 'tests/fixtures/'
 
@@ -11,12 +11,14 @@ flat_yml_files = ('flat/flat_previous.yml', 'flat/flat_current.yml')
 
 flat_expected_stylish = 'flat/expected_flat.txt'
 flat_expected_plain = 'flat/expected_flat_plain.txt'
+flat_expected_json = 'flat/flat_expected.json'
 
 complex_json_files = ('complex/previous.json', 'complex/current.json')
 complex_yml_files = ('complex/previous.yml', 'complex/current.yml')
 
 complex_expected_stylish = 'complex/expected.txt'
 complex_expected_plain = 'complex/expected_plain.txt'
+complex_expected_json = 'complex/expected.json'
 
 
 @pytest.mark.parametrize(
@@ -37,6 +39,14 @@ complex_expected_plain = 'complex/expected_plain.txt'
         (*complex_json_files, complex_expected_plain, PLAIN_FORMAT),
 
         (*complex_yml_files, complex_expected_plain, PLAIN_FORMAT),
+
+        (*flat_json_files, flat_expected_json, JSON_FORMAT),
+
+        (*flat_yml_files, flat_expected_json, JSON_FORMAT),
+
+        (*complex_json_files, complex_expected_json, JSON_FORMAT),
+
+        (*complex_yml_files, complex_expected_json, JSON_FORMAT),
     ])
 def test_formats(
     path_to_previous,
