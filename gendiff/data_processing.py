@@ -4,7 +4,7 @@ import os
 
 import yaml
 
-extension = {
+extensions = {
     '.yaml': yaml.safe_load,
     '.yml': yaml.safe_load,
     '.json': json.load,
@@ -12,11 +12,12 @@ extension = {
 
 
 def read_file(path_to_file):
-    _, file_extension = os.path.splitext(path_to_file)
+    _, extension = os.path.splitext(path_to_file)
+    file_extension = extension.lower()
 
     try:
         with open(path_to_file) as input_file:
-            get_dict = extension[file_extension]
+            get_dict = extensions[file_extension]
             return get_dict(input_file)
 
     except OSError as error:
