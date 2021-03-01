@@ -42,4 +42,4 @@ Supported output formats: plain, json and stylish format by default
 
 ### JSON format ###
 
-[![asciicast](https://asciinema.org/a/pPR16DZWCVTLZLs0spYpzjYhm.svg)](https://asciinema.org/a/pPR16DZWCVTLZLs0spYpzjYhm)
+[![asciicast](https://asciinema.org/a/uSzmsRcLC1nD935NIkCa4D7Lz.svg)](https://asciinema.org/a/uSzmsRcLC1nD935NIkCa4D7Lz)
