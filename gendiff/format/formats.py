@@ -2,7 +2,7 @@
 from gendiff.format import json_format, plain, stylish
 
 formats = {
-    'stylish': stylish.stylish,
+    'stylish': stylish.get_stylish,
     'plain': plain.plain,
     'json': json_format.get_json,
 }

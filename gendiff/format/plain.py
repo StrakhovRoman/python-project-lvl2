@@ -1,5 +1,4 @@
 """Plain output format."""
-from gendiff.format.converter import convert
 from gendiff.format.sorting import diff_sort
 from gendiff.gen_diff import ADDED, CHANGED, DELETED, PARENT
 
@@ -20,7 +19,7 @@ def plain(diff, path=''):
                 plain(node.value, '{0}{1}.'.format(path, node.name)),
             )
 
-        elif node.status == CHANGED:
+        if node.status == CHANGED:
             previous_value, current_value = node.value
             output.append(templates[CHANGED].format(
                 path,
@@ -30,20 +29,31 @@ def plain(diff, path=''):
             ),
             )
 
-        elif node.status in {ADDED, DELETED}:
-            output.append(templates[node.status].format(
+        if node.status == ADDED:
+            output.append(templates[ADDED].format(
                 path,
                 node.name,
                 format_value(node.value),
             ),
             )
 
+        if node.status == DELETED:
+            output.append(templates[DELETED].format(
+                path,
+                node.name,
+                format_value(node.value),
+            ),
+            )
     return '\n'.join(output)
 
 
 def format_value(node_value):
     if isinstance(node_value, dict):
         return '[complex value]'
-    elif isinstance(node_value, str):
+    if isinstance(node_value, str):
         return "'{0}'".format(node_value)
-    return convert(node_value)
+    if node_value is None:
+        return 'null'
+    if isinstance(node_value, bool):
+        return str(node_value).lower()
+    return str(node_value)
