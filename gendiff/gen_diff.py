@@ -13,18 +13,18 @@ Node = namedtuple('Node', 'name value status')
 
 
 def get_difference(first_file, second_file):  # noqa: WPS210
-    intersection = [key for key in first_file if key in second_file]
-    addition = [key for key in second_file if key not in first_file]
-    deletion = [key for key in first_file if key not in second_file]
+    common_keys = first_file.keys() & second_file.keys()
+    added_keys = second_file.keys() - first_file.keys()
+    deleted_keys = first_file.keys() - second_file.keys()
     diff = []
 
-    for key in intersection:
-        add_intersection_node(diff, key, first_file, second_file)
+    for key in common_keys:
+        add_common_keys_node(diff, key, first_file, second_file)
 
-    for added_key in addition:
+    for added_key in added_keys:
         add_node(diff, added_key, second_file, ADDED)
 
-    for deleted_key in deletion:
+    for deleted_key in deleted_keys:
         add_node(diff, deleted_key, first_file, DELETED)
 
     return diff
@@ -34,7 +34,7 @@ def add_node(tree, name, input_file, node_status):
     tree.append(Node(name, input_file[name], node_status))
 
 
-def add_intersection_node(tree, name, previous, current):
+def add_common_keys_node(tree, name, previous, current):
     previous_value = previous[name]
     current_value = current[name]
     if isinstance(previous_value, dict) and isinstance(current_value, dict):
