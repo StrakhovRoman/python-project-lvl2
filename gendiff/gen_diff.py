@@ -1,4 +1,4 @@
-"""Files difference generator."""
+"""Difference generator."""
 
 from collections import namedtuple
 
@@ -44,7 +44,3 @@ def add_common_keys_node(tree, name, previous_data, current_data):
         tree.append(Node(name, previous_value, UNCHANGED))
     else:
         tree.append(Node(name, (previous_value, current_value), CHANGED))
-
-
-def diff_sort(diff):
-    return diff.sort(key=lambda node: node.name)

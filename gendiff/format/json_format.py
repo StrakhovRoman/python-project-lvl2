@@ -2,7 +2,8 @@
 import json
 
 from gendiff.format.converter import convert
-from gendiff.gen_diff import CHANGED, PARENT, diff_sort
+from gendiff.format.sorting import diff_sort
+from gendiff.gen_diff import CHANGED, PARENT
 
 INDENT = ' '
 OPEN_BRACKET = '{'
