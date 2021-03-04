@@ -1,7 +1,30 @@
-{
-  "follow": {"status": "deleted", "value": false},
-  "host": {"status": "unchanged", "value": "hexlet.io"},
-  "proxy": {"status": "deleted", "value": "123.234.53.22"},
-  "timeout": {"status": "changed", "old": 50, "new": 20},
-  "verbose": {"status": "added", "value": true}
-}
+[
+  {
+    "key": "follow",
+    "value": false,
+    "status": "deleted"
+  },
+  {
+    "key": "host",
+    "value": "hexlet.io",
+    "status": "unchanged"
+  },
+  {
+    "key": "proxy",
+    "value": "123.234.53.22",
+    "status": "deleted"
+  },
+  {
+    "key": "timeout",
+    "value": {
+      "previous": 50,
+      "current": 20
+    },
+    "status": "changed"
+  },
+  {
+    "key": "verbose",
+    "value": true,
+    "status": "added"
+  }
+]
