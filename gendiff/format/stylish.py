@@ -1,4 +1,4 @@
-"""Stylish output_lines format."""
+"""Stylish output format."""
 from gendiff.format.converter import convert
 from gendiff.format.sorting import diff_sort
 from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
