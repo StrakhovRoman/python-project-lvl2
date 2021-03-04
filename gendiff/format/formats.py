@@ -1,10 +1,10 @@
 """Data of formats."""
-from gendiff.format import json_format, plain, stylish
+from gendiff.format import json, plain, stylish
 
 formats = {
     'stylish': stylish.get_stylish,
     'plain': plain.plain,
-    'json': json_format.get_json,
+    'json': json.get_json,
 }
 
 DEFAULT_FORMAT = 'stylish'
@@ -12,10 +12,10 @@ PLAIN_FORMAT = 'plain'
 JSON_FORMAT = 'json'
 
 
-def get_format_function(file_format):
+def get_formatter(diff_format):
     try:
-        return formats[file_format]
+        return formats[diff_format]
     except KeyError as error:
         raise RuntimeError(
-            'Sorry, "{0}" output format is not correct.'.format(file_format),
+            'Sorry, "{0}" output format is not correct.'.format(diff_format),
         ) from error
