@@ -1,7 +1,7 @@
 """Stylish output_lines format."""
 from gendiff.format.converter import convert
 from gendiff.format.sorting import diff_sort
-from gendiff.gen_diff import ADDED, CHANGED, DELETED, PARENT
+from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
 INDENT = '  '
 OPEN_BRACKET = '{'

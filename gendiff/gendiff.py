@@ -1,7 +1,7 @@
 """Run difference generator."""
 from gendiff import get_data
 from gendiff.format.formats import DEFAULT_FORMAT, get_formatter
-from gendiff.gen_diff import get_difference
+from gendiff.makediff import get_difference
 
 
 def generate_diff(first_file, second_file, _format=DEFAULT_FORMAT):

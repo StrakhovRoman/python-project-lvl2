@@ -1,6 +1,6 @@
 """Plain output format."""
 from gendiff.format.sorting import diff_sort
-from gendiff.gen_diff import ADDED, CHANGED, DELETED, PARENT
+from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
 templates = {
     CHANGED: "Property '{0}{1}' was updated. From {2} to {3}",
