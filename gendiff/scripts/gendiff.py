@@ -3,8 +3,8 @@
 """Gendiff script."""
 
 
+from gendiff.cli_argparser import get_parser
 from gendiff.engine import generate_diff
-from gendiff.parser import get_parser
 
 
 def main():

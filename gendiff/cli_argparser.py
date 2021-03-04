@@ -1,4 +1,4 @@
-"""Argument parser."""
+"""CLI argument parser."""
 
 import argparse
 
