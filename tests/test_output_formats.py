@@ -1,8 +1,8 @@
 """All output formats test."""
 import pytest
 
-from gendiff.engine import generate_diff
 from gendiff.format.formats import DEFAULT_FORMAT, JSON_FORMAT, PLAIN_FORMAT
+from gendiff.gendiff import generate_diff
 
 PATH_TO_FIXTURES = 'tests/fixtures/'
 

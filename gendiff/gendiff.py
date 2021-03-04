@@ -1,4 +1,4 @@
-"""Run programm modules."""
+"""Run difference generator."""
 from gendiff import get_data
 from gendiff.format.formats import DEFAULT_FORMAT, get_formatter
 from gendiff.gen_diff import get_difference

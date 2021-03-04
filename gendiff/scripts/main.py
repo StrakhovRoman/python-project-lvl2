@@ -4,7 +4,7 @@
 
 
 from gendiff.cli_argparser import get_parser
-from gendiff.engine import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 def main():
