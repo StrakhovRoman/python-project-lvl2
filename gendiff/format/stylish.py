@@ -1,5 +1,4 @@
 """Stylish output format."""
-from gendiff.format.converter import convert
 from gendiff.format.sorting import sort_diff
 from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
@@ -93,7 +92,15 @@ def format_line(name, value, status, indent, depth):  # noqa: WPS110
         lines.append('{0}{1}'.format(indent + INDENT, CLOSE_BRACKET))
     else:
         lines.append('{0}{1} {2}: {3}'.format(
-            indent, get_sign(status), name, convert(value),
+            indent, get_sign(status), name, format_node_value(value),
         ),
         )
     return '\n'.join(lines)
+
+
+def format_node_value(node_value):
+    if node_value is None:
+        return 'null'
+    elif isinstance(node_value, bool):
+        return str(node_value).lower()
+    return str(node_value)
