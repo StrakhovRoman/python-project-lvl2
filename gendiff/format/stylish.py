@@ -1,6 +1,6 @@
 """Stylish output format."""
 from gendiff.format.converter import convert
-from gendiff.format.sorting import diff_sort
+from gendiff.format.sorting import sort_diff
 from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
 INDENT = '  '
@@ -17,7 +17,7 @@ def get_stylish(diff):
 def stylish(diff, depth=1):
     output_lines = []
     indent = INDENT * depth
-    diff_sort(diff)
+    sort_diff(diff)
 
     for node in diff:
         if node.status == PARENT:

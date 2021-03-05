@@ -1,7 +1,7 @@
 """JSON output format."""
 import json
 
-from gendiff.format.sorting import diff_sort
+from gendiff.format.sorting import sort_diff
 from gendiff.makediff import CHANGED, PARENT
 
 
@@ -10,7 +10,7 @@ def get_json(diff):
 
 
 def make_diff_as_dict(diff):
-    diff_sort(diff)
+    sort_diff(diff)
     diff_as_dict = []
     for node in diff:
 

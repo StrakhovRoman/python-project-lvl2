@@ -1,5 +1,5 @@
 """Plain output format."""
-from gendiff.format.sorting import diff_sort
+from gendiff.format.sorting import sort_diff
 from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
 CHANGED_LINE = "Property '{0}{1}' was updated. From {2} to {3}"
@@ -9,7 +9,7 @@ DELETED_LINE = "Property '{0}{1}' was removed"
 
 def plain(diff, path=''):
     output = []
-    diff_sort(diff)
+    sort_diff(diff)
 
     for node in diff:
         if node.status == PARENT:
