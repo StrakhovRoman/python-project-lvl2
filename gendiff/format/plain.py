@@ -2,11 +2,9 @@
 from gendiff.format.sorting import diff_sort
 from gendiff.makediff import ADDED, CHANGED, DELETED, PARENT
 
-templates = {
-    CHANGED: "Property '{0}{1}' was updated. From {2} to {3}",
-    ADDED: "Property '{0}{1}' was added with value: {2}",
-    DELETED: "Property '{0}{1}' was removed",
-}
+CHANGED_LINE = "Property '{0}{1}' was updated. From {2} to {3}"
+ADDED_LINE = "Property '{0}{1}' was added with value: {2}"
+DELETED_LINE = "Property '{0}{1}' was removed"
 
 
 def plain(diff, path=''):
@@ -21,7 +19,7 @@ def plain(diff, path=''):
 
         if node.status == CHANGED:
             previous_value, current_value = node.value
-            output.append(templates[CHANGED].format(
+            output.append(CHANGED_LINE.format(
                 path,
                 node.name,
                 format_value(previous_value),
@@ -30,7 +28,7 @@ def plain(diff, path=''):
             )
 
         if node.status == ADDED:
-            output.append(templates[ADDED].format(
+            output.append(ADDED_LINE.format(
                 path,
                 node.name,
                 format_value(node.value),
@@ -38,7 +36,7 @@ def plain(diff, path=''):
             )
 
         if node.status == DELETED:
-            output.append(templates[DELETED].format(
+            output.append(DELETED_LINE.format(
                 path,
                 node.name,
                 format_value(node.value),
